@@ -15,17 +15,20 @@ export default function BattleshipBoard({
     <div className={`grid grid-cols-10 ${!isCurrentTurn ? "opacity-50" : ""}`}>
       {board.grid.map((row, x) =>
         row.map((cell, y) => {
-          let buttonColor;
+          let buttonColor, hoverColor;
 
           switch (cell) {
             case CellState.miss:
               buttonColor = "bg-black";
+              hoverColor = "hover:bg-black";
               break;
             case CellState.hit:
               buttonColor = "bg-red-500";
+              hoverColor = "hover:bg-red-500";
               break;
             default:
               buttonColor = "bg-gray-300";
+              hoverColor = "hover:bg-gray-400";
               break;
           }
 
@@ -33,7 +36,7 @@ export default function BattleshipBoard({
             <button
               onClick={callback ? () => callback(x, y) : () => {}}
               key={`${x},${y}`}
-              className={`${buttonColor} w-10 h-10 border`}></button>
+              className={`${buttonColor} ${hoverColor} w-10 h-10 border`}></button>
           );
         })
       )}
