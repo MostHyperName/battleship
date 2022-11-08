@@ -7,7 +7,9 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <head></head>
+      <head>
+        <title>Battle The Ship</title>
+      </head>
       <body>{children}</body>
     </html>
   );
