@@ -1,4 +1,6 @@
 import { generateAvailableCoordinates } from "./utils";
+import { checkAvalible } from "./utils";
+import { generateAvailablePosititions } from "./utils";
 
 export enum CellState {
   empty,
@@ -23,16 +25,10 @@ export class Board {
     }
 
     let availableCoordinates = generateAvailableCoordinates(size);
+    let shape = [[[0, 0], [0, 1], [0, 2], [1, 2], [2, 2]]];
+    let coords = [];
 
-    for (let i = 0; i < this.ships; i++) {
-      const index = Math.floor(Math.random() * availableCoordinates.length);
-      const [x, y] = availableCoordinates[index];
-      availableCoordinates = [
-        ...availableCoordinates.slice(0, index),
-        ...availableCoordinates.slice(index + 1),
-      ];
-      this.grid[x][y] = CellState.ship;
-    }
+    generateAvailablePosititions(size, shape, this.grid)
   }
 
   attackCell(x: number, y: number) {
